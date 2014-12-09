@@ -22,7 +22,7 @@ post '/run' do
   s3_secret_key = ENV["s3_secret_key"]
   s3_bucket     = ENV["s3_bucket"]
   
-  if(key == params[:config][:secret])
+  if(key == params["hook"]["config"]["secret"])
 
     Newsbot::Manager.clean_output output
     puts "[Cleaned Repo]"
