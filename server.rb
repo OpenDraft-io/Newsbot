@@ -22,6 +22,8 @@ post '/run' do
   s3_secret_key = ENV["s3_secret_key"]
   s3_bucket     = ENV["s3_bucket"]
   
+  puts params.to_json
+  
   if(key == params["hook"]["config"]["secret"])
 
     Newsbot::Manager.clean_output output
