@@ -22,7 +22,10 @@ post '/run' do
   s3_secret_key = ENV["s3_secret_key"]
   s3_bucket     = ENV["s3_bucket"]
   
+  puts "___"
   puts params.to_json
+  puts params
+  puts "___"
   
   if(key == params["hook"]["config"]["secret"])
 
