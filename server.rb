@@ -11,6 +11,11 @@ configure do
 end
 set :logging, true
 
+before do
+  request.body.rewind
+  @request_payload = JSON.parse request.body.read
+end
+
 post '/run' do
   content_type :text
   
@@ -26,10 +31,10 @@ post '/run' do
   req = JSON.parse(request.body.read)
   
   puts "___"
-  puts req  
+  puts @request_payload  
   puts "___"
   
-  if(key == req["hook"]["config"]["secret"])
+  if(key == @request_payload["hook"]["config"]["secret"])
 
     Newsbot::Manager.clean_output output
     puts "[Cleaned Repo]"
