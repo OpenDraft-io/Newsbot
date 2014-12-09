@@ -9,6 +9,7 @@ require 'sinatra'
 configure do
   mime_type :text, 'text/text'
 end
+set :logging, true
 
 post '/run' do
   content_type :text
