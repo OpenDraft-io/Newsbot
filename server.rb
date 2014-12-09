@@ -17,7 +17,7 @@ post '/run' do
   
   output = ENV['newsbot_output']   || "./tmp/output"
   repo   = ENV['newsbot_repo']     || "./tmp/repository"
-  url    = ENV['newsbot_repo_url'] || "git@github.com:Hunter-Dolan/GitTest.git"
+  url    = ENV['newsbot_repo_url'] || "https://github.com/Hunter-Dolan/GitTest.git"
   key    = ENV['newsbot_key']
   
   s3_access_key = ENV["s3_access_key"]
