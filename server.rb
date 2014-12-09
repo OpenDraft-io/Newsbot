@@ -11,10 +11,6 @@ configure do
 end
 set :logging, true
 
-before do
-  request.body.rewind
-  @request_payload = JSON.parse request.body.read
-end
 
 post '/run' do
   content_type :text
@@ -28,11 +24,7 @@ post '/run' do
   s3_secret_key = ENV["s3_secret_key"]
   s3_bucket     = ENV["s3_bucket"]
   
-  puts "___"
-  puts @request_payload  
-  puts "___"
-  
-  if(key == @request_payload["hook"]["config"]["secret"])
+  if(key == params["key"])
 
     Newsbot::Manager.clean_output output
     puts "[Cleaned Repo]"
