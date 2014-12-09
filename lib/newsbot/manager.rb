@@ -31,19 +31,19 @@ module Newsbot
         # Loop Through Posts
         Dir.glob(repo + "/" + category + "/" + "*.md").sort_by{|c| File.stat(c).ctime}.each do |post|
           iteration += 1
-          self.generate_post(post, category, output, iteration)
+          self.generate_post(post, category, output)
         end
       end
     
       self.generate_indexes output
     end
     
-    def self.generate_post post, category, output, id_number
+    def self.generate_post post, category, output
       data = Mail.read(post)
       slug = File.basename(post, ".md")
       
       content = {
-        id: id_number.to_s + "_"+ slug,
+        id: slug,
         category: category
       }
       
@@ -62,7 +62,7 @@ module Newsbot
       
       content[:body] = body
       
-      new_path = output + "/posts/"+ id_number.to_s + "_" + slug + ".json"
+      new_path = output + "/posts/"+ slug + ".json"
       File.write(new_path, {post: content}.to_json)
     end
     
