@@ -13,6 +13,7 @@ set :logging, true
 
 before do
   request.body.rewind
+  puts request.body
   @request_payload = JSON.parse request.body.read
 end
 
@@ -27,8 +28,6 @@ post '/run' do
   s3_access_key = ENV["s3_access_key"]
   s3_secret_key = ENV["s3_secret_key"]
   s3_bucket     = ENV["s3_bucket"]
-  
-  req = JSON.parse(request.body.read)
   
   puts "___"
   puts @request_payload  
