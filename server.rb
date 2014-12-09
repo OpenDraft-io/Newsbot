@@ -10,7 +10,7 @@ configure do
   mime_type :text, 'text/text'
 end
 
-get '/run' do
+post '/run' do
   content_type :text
   
   output = ENV['newsbot_output']   || "./tmp/output"
@@ -22,7 +22,7 @@ get '/run' do
   s3_secret_key = ENV["s3_secret_key"]
   s3_bucket     = ENV["s3_bucket"]
   
-  if(key == params[:key])
+  if(key == params[:config][:secret])
 
     Newsbot::Manager.clean_output output
     puts "[Cleaned Repo]"
