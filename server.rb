@@ -13,9 +13,6 @@ set :logging, true
 
 before do
   request.body.rewind
-  puts "@@@@"
-  puts request.body.read
-  puts "@@@@"
   @request_payload = JSON.parse request.body.read
 end
 
